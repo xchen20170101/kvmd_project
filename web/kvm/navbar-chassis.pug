@@ -1,0 +1,20 @@
+li(class="right")
+	a(class="menu-button" href="#")
+		+navbar_led("hid-recorder-led", "led-gear")
+		| Chassis
+	div(data-dont-hide-menu class="menu")
+		hr
+		table(class="kv")
+			tr
+				td Chassis status:
+				td(colspan="2" id="hid-chassis-status" class="value") OFF
+		hr
+		div(class="buttons buttons-row")
+			button(id="hid-chassis-open" class="row50") Power On
+			button(id="hid-chassis-close" class="row50") Power Off
+		hr
+		table(class="kv")
+			tr
+				td KVM HDMI Input Port Switch:
+				td(colspan="2" id="hid-chassis-kvm-status" class="value") 1
+		hr

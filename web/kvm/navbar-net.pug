@@ -1,0 +1,23 @@
+li(class="right")
+	a(class="menu-button" href="#")
+		+navbar_led("hid-recorder-led", "led-gear")
+		| Network
+	div(data-dont-hide-menu class="menu")
+		hr
+		table(class="kv")
+			tr
+				td Address:
+				td #[input(type="net-address" id="hid-network-input-address")]
+			tr
+				td Mask:
+				td #[input(type="net-mask" id="hid-network-input-mask")]
+			tr
+				td Gateway:
+				td #[input(type="net-gateway" id="hid-network-input-gateway")]
+			tr
+				td DNS:
+				td #[input(type="net-dns" id="hid-network-input-dns")]
+		hr
+		div(class="buttons buttons-row")
+			button(id="hid-recorder-netstat" class="row100") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply
+		hr
