@@ -457,6 +457,7 @@ export function Recorder() {
 					wm.error("HID reset error:<br>", http.responseText);
 				}
 			}
+			__getNodeStatus();
 		});
 	};
 
@@ -468,6 +469,7 @@ export function Recorder() {
 					wm.error("HID reset error:<br>", http.responseText);
 				}
 			}
+			__getNodeStatus();
 		});
 	};
 

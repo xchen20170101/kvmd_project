@@ -134,7 +134,7 @@ class InfoApi:
             command = "sudo crpspwr status"
             status, res = subprocess.getstatusoutput(command)
             data['chassis_status'] = 'ON' if 'ON' in res else 'OFF'
-            command = "sudo kvmstatus"
+            command = "kvmstatus"
             status, res = subprocess.getstatusoutput(command)
             if status != 0:
                 data['error'] = res
