@@ -66,6 +66,42 @@ export function Recorder() {
 		tools.el.setOnClick($("hid-node-close-6"), __close_node6);
 		tools.el.setOnClick($("hid-node-close-7"), __close_node7);
 		tools.el.setOnClick($("hid-node-close-8"), __close_node8);
+		tools.el.setOnClick($("hid-node-staus-on-1"), __enable_node1);
+		tools.el.setOnClick($("hid-node-staus-on-2"), __enable_node2);
+		tools.el.setOnClick($("hid-node-staus-on-3"), __enable_node3);
+		tools.el.setOnClick($("hid-node-staus-on-4"), __enable_node4);
+		tools.el.setOnClick($("hid-node-staus-on-5"), __enable_node5);
+		tools.el.setOnClick($("hid-node-staus-on-6"), __enable_node6);
+		tools.el.setOnClick($("hid-node-staus-on-7"), __enable_node7);
+		tools.el.setOnClick($("hid-node-staus-on-8"), __enable_node8);
+
+		tools.el.setOnClick($("hid-node-staus-off-1"), __disable_node1);
+		tools.el.setOnClick($("hid-node-staus-off-2"), __disable_node2);
+		tools.el.setOnClick($("hid-node-staus-off-3"), __disable_node3);
+		tools.el.setOnClick($("hid-node-staus-off-4"), __disable_node4);
+		tools.el.setOnClick($("hid-node-staus-off-5"), __disable_node5);
+		tools.el.setOnClick($("hid-node-staus-off-6"), __disable_node6);
+		tools.el.setOnClick($("hid-node-staus-off-7"), __disable_node7);
+		tools.el.setOnClick($("hid-node-staus-off-8"), __disable_node8);
+
+		tools.el.setOnClick($("hid-node-reset-1"), __reset_node1);
+		tools.el.setOnClick($("hid-node-reset-2"), __reset_node2);
+		tools.el.setOnClick($("hid-node-reset-3"), __reset_node3);
+		tools.el.setOnClick($("hid-node-reset-4"), __reset_node4);
+		tools.el.setOnClick($("hid-node-reset-5"), __reset_node5);
+		tools.el.setOnClick($("hid-node-reset-6"), __reset_node6);
+		tools.el.setOnClick($("hid-node-reset-7"), __reset_node7);
+		tools.el.setOnClick($("hid-node-reset-8"), __reset_node8);
+
+		tools.el.setOnClick($("hid-node-kvm-1"), __kvm_node1);
+		tools.el.setOnClick($("hid-node-kvm-2"), __kvm_node2);
+		tools.el.setOnClick($("hid-node-kvm-3"), __kvm_node3);
+		tools.el.setOnClick($("hid-node-kvm-4"), __kvm_node4);
+		tools.el.setOnClick($("hid-node-kvm-5"), __kvm_node5);
+		tools.el.setOnClick($("hid-node-kvm-6"), __kvm_node6);
+		tools.el.setOnClick($("hid-node-kvm-7"), __kvm_node7);
+		tools.el.setOnClick($("hid-node-kvm-8"), __kvm_node8);
+
 		tools.el.setOnClick($("hid-chassis-open"), __open_chassis);
 		tools.el.setOnClick($("hid-chassis-close"), __close_chassis);
 	};
@@ -473,6 +509,54 @@ export function Recorder() {
 		});
 	};
 
+	var __enable_node = function(i) {
+		let url = "/api/enable_node?num=" + i;
+		let http = tools.makeRequest("POST", url, function() {
+			if (http.readyState === 4) {
+				if (http.status !== 200) {
+					wm.error("HID reset error:<br>", http.responseText);
+				}
+			}
+			__getNodeStatus();
+		});
+	};
+
+	var __disable_node = function(i) {
+		let url = "/api/disable_node?num=" + i;
+		let http = tools.makeRequest("POST", url, function() {
+			if (http.readyState === 4) {
+				if (http.status !== 200) {
+					wm.error("HID reset error:<br>", http.responseText);
+				}
+			}
+			__getNodeStatus();
+		});
+	};
+
+	var __reset_node = function(i) {
+		let url = "/api/reset_node?num=" + i;
+		let http = tools.makeRequest("POST", url, function() {
+			if (http.readyState === 4) {
+				if (http.status !== 200) {
+					wm.error("HID reset error:<br>", http.responseText);
+				}
+			}
+			__getNodeStatus();
+		});
+	};
+
+	var __kvm_node = function(i) {
+		let url = "/api/kvm_node?num=" + i;
+		let http = tools.makeRequest("POST", url, function() {
+			if (http.readyState === 4) {
+				if (http.status !== 200) {
+					wm.error("HID reset error:<br>", http.responseText);
+				}
+			}
+			__get_chassis_status();
+		});
+	};
+
 	var __open_node1 = function() {
 		console.log("open node 1");
 		__open_node(1);
@@ -551,6 +635,134 @@ export function Recorder() {
 	var __close_node8 = function() {
 		console.log("close node 8");
 		__close_node(8);
+	};
+
+	var __enable_node1 = function() {
+		__enable_node(1);
+	};
+
+	var __enable_node2 = function() {
+		__enable_node(2);
+	};
+
+	var __enable_node3 = function() {
+		__enable_node(3);
+	};
+
+	var __enable_node4 = function() {
+		__enable_node(4);
+	};
+
+	var __enable_node5 = function() {
+		__enable_node(5);
+	};
+
+	var __enable_node6 = function() {
+		__enable_node(6);
+	};
+
+	var __enable_node7 = function() {
+		__enable_node(7);
+	};
+
+	var __enable_node8 = function() {
+		__enable_node(8);
+	};
+
+	var __disable_node1 = function() {
+		__disable_node(1);
+	};
+
+	var __disable_node2 = function() {
+		__disable_node(2);
+	};
+
+	var __disable_node3 = function() {
+		__disable_node(3);
+	};
+
+	var __disable_node4 = function() {
+		__disable_node(4);
+	};
+
+	var __disable_node5 = function() {
+		__disable_node(5);
+	};
+
+	var __disable_node6 = function() {
+		__disable_node(6);
+	};
+
+	var __disable_node7 = function() {
+		__disable_node(7);
+	};
+
+	var __disable_node8 = function() {
+		__disable_node(8);
+	};
+
+	var __reset_node1 = function() {
+		__reset_node(1);
+	};
+
+	var __reset_node2 = function() {
+		__reset_node(2);
+	};
+
+	var __reset_node3 = function() {
+		__reset_node(3);
+	};
+
+	var __reset_node4 = function() {
+		__reset_node(4);
+	};
+
+	var __reset_node5 = function() {
+		__reset_node(5);
+	};
+
+	var __reset_node6 = function() {
+		__reset_node(6);
+	};
+
+	var __reset_node7 = function() {
+		__reset_node(7);
+	};
+
+	var __reset_node8 = function() {
+		__reset_node(8);
+	};
+
+	var __kvm_node1 = function() {
+		__kvm_node(1);
+	};
+
+	var __kvm_node2 = function() {
+		__kvm_node(2);
+	};
+
+	var __kvm_node3 = function() {
+		__kvm_node(3);
+	};
+
+	var __kvm_node4 = function() {
+		__kvm_node(4);
+	};
+
+	var __kvm_node5 = function() {
+		__kvm_node(5);
+	};
+
+	var __kvm_node6 = function() {
+		__kvm_node(6);
+	};
+
+	var __kvm_node7 = function() {
+		__kvm_node(7);
+	};
+
+	var __kvm_node8 = function() {
+		__kvm_node(8);
 	};
 
 	var __get_chassis_status = function() {

@@ -171,6 +171,58 @@ class InfoApi:
         except Exception as e:
             data['error'] = str(e)
         return make_json_response(data)
+
+    @exposed_http("POST", "/enable_node")
+    async def __node_enable(self, request: Request) -> Response:
+        data = {}
+        try:
+            num = request.query.get('num')
+            command = "sudo nodenable {}".format(num)
+            status, res = subprocess.getstatusoutput(command)
+            data['status'] = status
+            data['res'] = res
+        except Exception as e:
+            data['error'] = str(e)
+        return make_json_response(data)
+    
+    @exposed_http("POST", "/disable_node")
+    async def __node_disable(self, request: Request) -> Response:
+        data = {}
+        try:
+            num = request.query.get('num')
+            command = "sudo noddisable {}".format(num)
+            status, res = subprocess.getstatusoutput(command)
+            data['status'] = status
+            data['res'] = res
+        except Exception as e:
+            data['error'] = str(e)
+        return make_json_response(data)
+    
+    @exposed_http("POST", "/reset_node")
+    async def __node_reset(self, request: Request) -> Response:
+        data = {}
+        try:
+            num = request.query.get('num')
+            command = "sudo nodrst {}".format(num)
+            status, res = subprocess.getstatusoutput(command)
+            data['status'] = status
+            data['res'] = res
+        except Exception as e:
+            data['error'] = str(e)
+        return make_json_response(data)
+    
+    @exposed_http("POST", "/kvm_node")
+    async def __node_kvm(self, request: Request) -> Response:
+        data = {}
+        try:
+            num = request.query.get('num')
+            command = "sudo kvmport {}".format(num)
+            status, res = subprocess.getstatusoutput(command)
+            data['status'] = status
+            data['res'] = res
+        except Exception as e:
+            data['error'] = str(e)
+        return make_json_response(data)
     
     @exposed_http("POST", "/close_node")
     async def __node_close(self, request: Request) -> Response:
