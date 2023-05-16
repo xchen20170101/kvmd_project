@@ -1,0 +1,20 @@
+li(class="right")
+	a(class="menu-button" href="#")
+		+navbar_led("hid-recorder-led", "led-gear")
+		| UserInfo
+	div(data-dont-hide-menu class="menu")
+		hr
+		table(class="kv")
+			tr
+				td UserName:
+				td #[input(type="info-username" id="hid-info-username")]
+			tr
+				td Password:
+				td #[input(type="info-password" id="hid-info-password")]
+			tr
+				td Repeat Password:
+				td #[input(type="info-repeat" id="hid-info-repeat")]
+		hr
+		div(class="buttons buttons-row")
+			button(id="hid-recorder-info-pwd-modify" class="row100") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modify
+		hr

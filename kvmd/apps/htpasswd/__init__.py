@@ -105,12 +105,13 @@ def _cmd_list(config: Section, _: argparse.Namespace) -> None:
 def _cmd_set(config: Section, options: argparse.Namespace) -> None:
     with _get_htpasswd_for_write(config) as htpasswd:
         has_user = (options.user in htpasswd.users())
-        if options.read_stdin:
-            passwd = valid_passwd(input())
-        else:
-            passwd = valid_passwd(getpass.getpass("Password: ", stream=sys.stderr))
-            if valid_passwd(getpass.getpass("Repeat: ", stream=sys.stderr)) != passwd:
-                raise SystemExit("Sorry, passwords do not match")
+        passwd = valid_passwd(options.pwd)
+        # if options.read_stdin:
+        #     passwd = valid_passwd(input())
+        # else:
+        #     passwd = valid_passwd(getpass.getpass("Password: ", stream=sys.stderr))
+        #     if valid_passwd(getpass.getpass("Repeat: ", stream=sys.stderr)) != passwd:
+        #         raise SystemExit("Sorry, passwords do not match")
         htpasswd.set_password(options.user, passwd)
     if has_user and not options.quiet:
         _print_invalidate_tip(True)
@@ -146,6 +147,7 @@ def main(argv: Optional[List[str]]=None) -> None:
     cmd_set_parser.add_argument("user", type=valid_user)
     cmd_set_parser.add_argument("-i", "--read-stdin", action="store_true", help="Read password from stdin")
     cmd_set_parser.add_argument("-q", "--quiet", action="store_true", help="Don't show invalidation note")
+    cmd_set_parser.add_argument("-p", "--pwd", help="Password")
     cmd_set_parser.set_defaults(cmd=_cmd_set)
 
     cmd_delete_parser = subparsers.add_parser("del", help="Delete user")

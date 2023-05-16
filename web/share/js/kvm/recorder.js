@@ -104,6 +104,7 @@ export function Recorder() {
 
 		tools.el.setOnClick($("hid-chassis-open"), __open_chassis);
 		tools.el.setOnClick($("hid-chassis-close"), __close_chassis);
+		tools.el.setOnClick($("hid-recorder-info-pwd-modify"), __modify_pwd);
 	};
 
 	/************************************************************************/
@@ -799,6 +800,24 @@ export function Recorder() {
 				}
 			}
 		});	
+	};
+
+	var __modify_pwd = function() {
+		let username = $("hid-info-username").value;
+		let password = $("hid-info-password").value;
+		let repeatPassword = $("hid-info-repeat").value;
+		if (password !== repeatPassword) {
+			alert("Inconsistent password input!")
+		} else {
+			let url = "/api/password?password=" + password + "&username=" + username;
+			let http = tools.makeRequest("POST", url, function() {
+				if (http.readyState === 4) {
+					if (http.status !== 200) {
+						wm.error("HID reset error:<br>", http.responseText);
+					}
+				}
+			});
+		}
 	};
 	__init__();
 }

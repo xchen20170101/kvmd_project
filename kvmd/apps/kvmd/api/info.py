@@ -103,6 +103,20 @@ class InfoApi:
             data['error'] = str(e)
         return make_json_response(data)
     
+    @exposed_http("POST", "/password")
+    async def __common_modify_password(self, request: Request) -> Response:
+        data = {}
+        user_name = request.query.get('username')
+        password = request.query.get('password')
+        try:
+            command = "sudo kvmd-htpasswd set -p={} {}".format(password, user_name)
+            status, res = subprocess.getstatusoutput(command)
+            data['status'] = status
+            data['res'] = res
+        except Exception as e:
+            data['error'] = str(e)
+        return make_json_response(data)
+    
     @exposed_http("POST", "/chassis_open")
     async def __common_open_chassis(self, request: Request) -> Response:
         data = {}
