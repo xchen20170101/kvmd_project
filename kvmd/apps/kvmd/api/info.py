@@ -121,7 +121,7 @@ class InfoApi:
     async def __common_open_chassis(self, request: Request) -> Response:
         data = {}
         try:
-            command = "crpspwr on"
+            command = "sudo crpspwr on"
             status, res = subprocess.getstatusoutput(command)
             data['status'] = status
             data['res'] = res
@@ -133,7 +133,7 @@ class InfoApi:
     async def __common_close_chassis(self, request: Request) -> Response:
         data = {}
         try:
-            command = "crpspwr off"
+            command = "sudo crpspwr off"
             status, res = subprocess.getstatusoutput(command)
             data['status'] = status
             data['res'] = res
